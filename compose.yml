@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+    db:
+        container_name: indices-db
+        image: postgres:14.4
+        volumes:
+            - ./services/postgres:/var/lib/postresql/data
+        networks:
+            - app-network
+        environment:
+            POSTGRES_USER: indices_user
+            POSTGRES_PASSWORD: indices_password
+            POSTGRES_DB: indices_db
+            PGDATA: /var/lib/postresql/data/pgdata
+        ports:
+            - "5436:5432"
+networks:
+    app-network:
+        driver: bridge
